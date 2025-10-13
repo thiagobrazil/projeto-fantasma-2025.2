@@ -8,73 +8,37 @@ output-file: "Entrega 1"
 source("rdocs/entrega_1.R")
 ```
 
-```{r}
-# Rodar apenas uma vez na vida!
-## Instalando o tinytex(pacote apenas)
-### CRAN version
-install.packages('tinytex')
-
-
-## Baixando o tinytex
-library(tinytex)
-tinytex::install_tinytex()
-```
 
 # Objetivo
 
-Esse template foi criado para o alocado conseguir observar como ficaria sua análise o arquivo principal. É daqui que o gerente de projetos irá copiar a análise e inserir no documento principal que gerará o relatório estatístico.
+  A análise tem o objetivo de entender como está sendo a receita total média das lojas, em reais, nessa região nos últimos 10 anos, ano por ano, começando no ano de 1880 até o ano de 1889, a fim de compreender se houve um aumento ou diminuição na quantidade de receita produzida média ao longo do tempo.
 
-# Análises
-
-## Análise 1
-
-## Análise 2
+## Análise 1: receita média das lojas registrada nos anos de 1880 até 1889
 
 ```{r}
 #| label: fig-
 #| fig-cap: "Gráfico "
 
-
+Gráfico
 
 ```
 
-
+  A partir do gráfico apresentado, é possível identificar um crescimento contínuo da receita total média até 1887, um decrescimento em 1888 e o maior crescimento durante o período (mais de 20 mil reais) em 1889. No geral, houve um aumento de receita durante o período analisado.
+  
 ::: {#quad- layout-align="center" quad-pos="H"}
 ```{=latex}
-
-
-
 ```
 
-Medidas resumo da 
+Medidas resumo da
 :::
-
-
 
 ::: {#tbl-modalidades layout-align="center" tbl-pos="H"}
 ```{=latex}
-
-
 ```
-
-
 :::
-
-
-
 
 $\ref{fig-}$
 
 [@tbl-]
 
-
 [**Quadro** @quad-]
-
-
-
-
-
-
-
-
-
