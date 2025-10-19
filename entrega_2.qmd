@@ -1,6 +1,6 @@
 ---
-# Nome do arquivo PDF gerado na pasta resultado
 output-file: "Entrega 2"
+
 ---
 
 ```{r setup}
@@ -8,70 +8,150 @@ output-file: "Entrega 2"
 source("rdocs/entrega_2.R")
 ```
 
+# Introdução
 
-```{r}
-# Rodar apenas uma vez na vida!
-## Instalando o tinytex(pacote apenas)
-### CRAN version
-install.packages('tinytex')
+O seguinte relatório tem por objetivo entender a relação entre o peso (em quilogramas) e altura (em centímetros) dos clientes das 18 lojas da região observaada pela holding Old Town Road.Ltda.
 
+# Referencial Teórico
 
-## Baixando o tinytex
-library(tinytex)
-tinytex::install_tinytex()
-```
+## Tipos de Variáveis
 
-# Objetivo
+### Qualitativas
 
-Esse template foi criado para o alocado conseguir observar como ficaria sua análise o arquivo principal. É daqui que o gerente de projetos irá copiar a análise e inserir no documento principal que gerará o relatório estatístico.
+As variáveis qualitativas são as variáveis não numéricas, que representam categorias ou características da população. Estas subdividem-se em:
+
+-   **Nominais**: quando não existe uma ordem entre as categorias da variável (exemplos: sexo, cor dos olhos, fumante ou não, etc)
+-   **Ordinais**: quando existe uma ordem entre as categorias da variável (exemplos: nível de escolaridade, mês, estágio de doença, etc)
+
+### Quantitativas
+
+As variáveis quantitativas são as variáveis numéricas, que representam características numéricas da população, ou seja, quantidades. Estas subdividem-se em:
+
+-   **Discretas**: quando os possíveis valores são enumeráveis (exemplos: número de filhos, número de cigarros fumados, etc)
+-   **Contínuas**: quando os possíveis valores são resultado de medições (exemplos: massa, altura, tempo, etc)
+
+## Média
+
+A média é a soma das observações dividida pelo número total delas, dada pela fórmula:
+
+$$\bar{X}=\frac{\sum\limits_{i=1}^{n}X_i}{n}$$
+
+Com:
+
+-   $i = 1, \, 2, \, ..., \, n$
+
+-   $n =$ número total de observações
+
+## Desvio Padrão
+
+O desvio padrão é a raiz quadrada da variância. Ele avalia o quanto os dados estão dispersos em relação à média.
+
+### Desvio Padrão Populacional
+
+Para uma população, o desvio padrão é dado por:
+
+$$\sigma=\sqrt{\frac{\sum\limits_{i=1}^{N}\left(X_i - \mu\right)^2}{N}}$$
+
+Com:
+
+-   $X_i =$ i-ésima observação da população
+
+-   $\mu =$ média populacional
+
+-   $N =$ tamanho da população
+
+### Desvio Padrão Amostral
+
+Para uma amostra, o desvio padrão é dado por:
+
+$$S=\sqrt{\frac{\sum\limits_{i=1}^{n}\left(X_i - \bar{X}\right)^2}{n-1}}$$
+
+Com:
+
+-   $X_i =$ i-ésima observação da amostra
+
+-   $\bar{X} =$ média amostral
+
+-   $n =$ tamanho da amostra
+
+## Gráfico de Dispersão
+
+O gráfico de dispersão é uma representação gráfica utilizada para ilustrar o comportamento conjunto de duas variáveis quantitativas. A figura abaixo ilustra um exemplo de gráfico de dispersão, onde cada ponto representa uma observação do banco de dados.
+
+![Exemplo de Gráfico de Dispersão](images/disp_uni.png){fig-align="center"}
 
 # Análises
 
-## Análise 3
-
-## Análise 4
+## Análise do comportamento do peso (em kg) em relação à altura
 
 ```{r}
-#| label: fig-
-#| fig-cap: "Gráfico "
+#| label: fig-clientes
+#| fig-cap: "Gráfico de dispersão do peso pela altura"
+#| fig-pos: "H"
 
-
+Gráfico_2
 
 ```
 
+Conforme observado na $\ref{fig-clientes}$ e no [**Quadro** @quad-infos], o peso tende a crescer conforme a altura cresce, com uma concentração maior de cliente próximos da média de peso (74,6) e de altura (171,480), além de um desvio padrão próximo de 10 em ambas as variáveis. 
 
-::: {#quad- layout-align="center" quad-pos="H"}
+## Análise do comportamento do peso (em kg) em relação à altura, para cada sexo
+
+```{r}
+#| label: fig-clientes_por_sexo
+#| fig-cap: "Gráfico de dispersão do peso pela altura para cada sexo"
+#| fig-pos: "H"
+
+Gráfico_por_sexo
+
+```
+
+Realizando a análise da $\ref{fig-clientes_por_sexo}$ e do [**Quadro** @quad-infossex], percebe-se que o comportamento das variáveis é bem parecido para os dois sexos, tendo médias e desvios padrão muito proximos, além de um peso mínimo (44,64) semelhante e altra mínima (150) e máxima (200) iguais. A maior diferença está na frequência, que demonstra uma maior quantidade de homens (1264) que de mulheres (726).
+
+::: {#quad-infos layout-align="center" quad-pos="H"}
 ```{=latex}
-
-
-
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\begin{tabular}[c]{@{}c@{}}Média\\ do peso\end{tabular} & \begin{tabular}[c]{@{}c@{}}Média\\ da altura\end{tabular} & \begin{tabular}[c]{@{}c@{}}Desvio padrão\\ do peso\end{tabular} & \begin{tabular}[c]{@{}c@{}}Desvio padrão\\ da altura\end{tabular} & \begin{tabular}[c]{@{}c@{}}Peso\\ mínimo\end{tabular} & \begin{tabular}[c]{@{}c@{}}Peso\\ máximo\end{tabular} & \begin{tabular}[c]{@{}c@{}}Altura\\ mínima\end{tabular} & \begin{tabular}[c]{@{}c@{}}Altura\\ máxima\end{tabular} \\ \hline
+74,60                                                   & 171,48                                                    & 11,82                                                           & 9,87                                                              & 44,64                                                 & 118, 35                                               & 150                                                     & 200                                                     \\ \hline
+\end{tabular}
 ```
 
-Medidas resumo da 
+Medidas resumo de altura e peso
 :::
 
+::: {#quad-infossex layout-align="center" quad-pos="H"}
+```{=latex}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+\hline
+\textbf{Sexo} & \multicolumn{1}{c|}{\textbf{Média de Peso}} 
+& \multicolumn{1}{c|}{\textbf{Média de altura}} 
+& \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Desvio padrão\\ do peso\end{tabular}}} 
+& \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Desvio padrão\\ da altura\end{tabular}}} 
+& \textbf{Peso mínimo} 
+& \textbf{Peso máximo} 
+& \textbf{Altura mínima} 
+& \textbf{Altura máxima} 
+& \textbf{Frequência} \\ 
+\hline
+Homem & 75,2 & 171,77 & 11,43 & 9,71 & 44,64 & 118,35 & 150 & 200 & 1264 \\ 
+\hline
+Mulher & 73,53 & 170,98 & 12,4 & 10,11 & 44,64 & 112,1 & 150 & 200 & 726 \\ 
+\hline
+\end{tabular}
+```
 
+Medidas resumo de altura e peso por sexo
+:::
 
 ::: {#tbl-modalidades layout-align="center" tbl-pos="H"}
 ```{=latex}
 
-
 ```
-
-
 :::
-
-
-
 
 $\ref{fig-}$
 
 [@tbl-]
 
-
 [**Quadro** @quad-]
-
-
-
-
-
