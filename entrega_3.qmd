@@ -8,72 +8,62 @@ output-file: "Entrega 3"
 source("rdocs/entrega_3.R")
 ```
 
-```{r}
-# Rodar apenas uma vez na vida!
-## Instalando o tinytex(pacote apenas)
-### CRAN version
-install.packages('tinytex')
-
-
-## Baixando o tinytex
-library(tinytex)
-tinytex::install_tinytex()
-```
-
-
-
 
 # Objetivo
 
-Esse template foi criado para o alocado conseguir observar como ficaria sua análise o arquivo principal. É daqui que o gerente de projetos irá copiar a análise e inserir no documento principal que gerará o relatório estatístico.
+O seguinte relatório tem por objetivo entender melhor o perfil das idades dos clientes nas diferentes lojas da cidade de Âmbar Seco.
 
 # Análises
 
-## Análise 5
+## Análise de frequência de idades por loja
 
-## Análise 6
+  O estudo sobre o comprtamento das idades consiste em duas variáveis: a idade dos cliente (variável quantitativa discreta) e nas lojas da ciade em questão (variável qualitativa nominal): "Banco Careca", "Ferraria Seca", "Saloon" e "Vendinha Rápida". Para esta análise foram feitos gráficos de box-plot e histograma e um quadro de medidas resumo para uma melho visualização a situação.
+  
+```{r}
+#| label: fig-box_plot
+#| fig-cap: "Gráfico de box-plot das idades em relação as lojas"
+#| fig-pos: "H"
+
+box_plot_lojas
+
+```
 
 ```{r}
-#| label: fig-
-#| fig-cap: "Gráfico "
+#| label: fig-histograma
+#| fig-cap: "Histogram das idades em relação as lojas"
+#| fig-pos: "H"
 
-
+hist_lojas
 
 ```
 
-
-::: {#quad- layout-align="center" quad-pos="H"}
+::: {#quad-medidas layout-align="center" quad-pos="H"}
 ```{=latex}
 
-
+	\begin{tabular}{| l | S[table-format=1.2] | S[table-format=1.2] | S[table-format=1.2] | S[table-format=2.2] |}
+	\toprule
+		\textbf{Estatística} & \textbf{Banco Careca} & \textbf{Ferraria Seca} & \textbf{Saloon} & \textbf{Vendinha Rápida} \\
+		\midrule
+		Média & 34,99 & 33,95 & 35,64 & 39,76 \\
+		Desvio Padrão &  5,47 & 13,51 & 12,00 &  6,05 \\
+		Variância &  29,91 & 182,54 & 144,12 &  36,64 \\
+		Mínimo & 25 & 16 & 15 & 30 \\
+		1o Quartil & 31 & 24 & 27 & 34 \\
+		Mediana & 34 & 31 & 34 & 40 \\
+		3o Quartil & 40 & 39 & 39 & 44 \\
+		Máximo & 44 & 80 & 77 & 49 \\
+	\bottomrule
+	\end{tabular}
 
 ```
 
-Medidas resumo da 
+Medidas resumo da idade dos clientes de Âmbar Seco
 :::
 
 
-
-::: {#tbl-modalidades layout-align="center" tbl-pos="H"}
-```{=latex}
-
-
-```
-
-
-:::
-
-
-
-
-$\ref{fig-}$
-
-[@tbl-]
-
-
-[**Quadro** @quad-]
-
-
+  Realizando a análise da $\ref{fig-box_plot}$, da $\ref{fig-hist}$ e do [**Quadro** @quad-medidas] é possível notar que as médias de idade das lojas são bastante parecidas, porém, quando analisamos  o comportamento da frequência das idades em cada loja, precebe-se que ele não é tão parecido assim.
+  É possível notar a presença de outliers com idades mais avançadas nas lojas Ferraria Seca e Saloon, mas a concentração de clientes no intervalo de 20 a 40 anos de idade faz com que suas médias se aproximem dos 35 anos.
+  A loja Vendinha Rápida, apesar de náo ter outliers e ter um intervalo de idade menor que as outras duas citadas anteriormente, apresenta a maior média de idades.
 
 
 
