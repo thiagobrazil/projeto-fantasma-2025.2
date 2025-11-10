@@ -1,5 +1,5 @@
 ---
-title: "Projeto Fantasma - PS 2025.2"
+title: "Estudo de mercado pela holding Old Town Road.Ltda"
 
 # Nome do documento PDF gerado
 output-file: Entrega final
@@ -12,7 +12,12 @@ source("rdocs/entrega_final.R")
 
 # Introdução
 
-  O seguinte relatório tem como objetivo de entender o mercadode de certa região que a Old Town Road.Ltda,  holding que controla diversas empresas ligadas ao comércio no faroeste, deseja investir, por meio de esudos e técnicas estatísticas.
+  O seguinte relatório tem como objetivo de entender o mercado de certa região que a Old Town Road.Ltda,  holding que controla diversas empresas ligadas ao comércio no faroeste, deseja investir, utilizando dados fornecidos pelo cliente. Nesse sentido, de início, será analisado o comportamento da receita total média das lojas em um período de 10 anos. Além desta, serão analisados o comportamento do peso em relação à altura, o perfil das idades por loja e, por fim, os três produtos mais vendidos nas três lojas com maior receita. 
+   
+  O banco de dados inicial possuía 19885 observações e 17 variáveis. Com um estudo minucioso sobre as informações necessárias para as análises, o conjunto de dados foi refinado para 13 variáveis essenciais e o número de observações depedente da demanda de cada análise. Variáveis essas que informam a data da venda, o ID da loja, ID do cliente, ID do produto, ID da cidade, quantidade vendida do produto, o nome da loja, nome do cliente, nome do produto, nome da cidade, preço do produto, a idade do cliente, a altura do cliente e o peso do cliente. 
+  
+  O software utilizado para a elaboração dos gráficos, tabelas e construção de testes foi o R versão 4.4.3.
+
 
 # Referencial Teórico
 
@@ -136,6 +141,18 @@ Com:
 
 -   $n =$ tamanho da amostra
 
+## Coeficiente de Variação
+
+O coeficiente de variação fornece a dispersão dos dados em relação à média. Quanto menor for o seu valor, mais homogêneos serão os dados. O coeficiente de variação é considerado baixo (apontando um conjunto de dados homogêneo) quando for menor ou igual a 25%. Ele é dado pela fórmula:
+
+$$C_V=\frac{S}{\bar{X}}\times 100$$
+
+Com:
+
+-   $S =$ desvio padrão amostral
+
+-   $\bar{X} =$ média amostral
+
 ## Boxplot
 
 O boxplot é uma representação gráfica na qual se pode perceber de forma mais clara como os dados estão distribuídos. A figura abaixo ilustra um exemplo de boxplot.
@@ -154,9 +171,9 @@ O gráfico de dispersão é uma representação gráfica utilizada para ilustrar
 
 # Análises
 
-## Receita média das lojas registrada nos anos de 1880 até 1889
+## Receita total média das lojas registrada nos anos de 1880 até 1889
   
-  A análise tem o intuito de compreender se houve um aumento ou diminuição na quantidade de receita média produzida nos últimos 10 anos (indo de 1880 à 1889). Para tal, foram utilizadas as variáveis Ano e Receita total média, sendo a primeira quantitativa discreta e a segunda quantitativa contínua. A parte ilustrativa será composta por um gráfico linhas e um quadro de medidas resumo. 
+  A análise tem o intuito de compreender se houve um aumento ou diminuição na quantidade de receita média produzida nos últimos 10 anos (indo de 1880 à 1889). Para tal, foram utilizadas as variáveis Ano e Receita total média, sendo a primeira quantitativa discreta e a segunda quantitativa contínua. A parte ilustrativa será composta por um gráfico de linhas e um quadro de medidas resumo. 
 
 ```{r}
 #| label: fig-receita_tot
@@ -170,28 +187,43 @@ Gráfico
 
 ::: {#tbl-receita_media layout-align="center" tbl-pos="H"}
 ```{=latex}
-\begin{tabular}{@{}l|rr@{}}
+\begin{tabular}{|l|l|}
 \toprule
 \textbf{Ano} & \textbf{Receita total média} \\ \midrule
-1880 & 105399,0 \\
-1881 & 112110,0 \\
-1882 & 112452,4 \\
-1883 & 116856,9 \\
-1884 & 119989,8 \\
-1885 & 129969,0 \\
-1886 & 130989,2 \\
-1887 & 135444,8 \\
-1888 & 133757,6 \\
-1889 & 155009,1 \\ \bottomrule
+1880 & 105.399,0 \\
+1881 & 112.110,0 \\
+1882 & 112.452,4 \\
+1883 & 116.856,9 \\
+1884 & 119.989,8 \\
+1885 & 129.969,0 \\
+1886 & 130.989,2 \\
+1887 & 135.444,8 \\
+1888 & 133.757,6 \\
+1889 & 155.009,1 \\ \bottomrule
 \end{tabular}
 ```
 
 Receita total média das lojas registrada nos anos de 1880 até 1889
 :::
 
+::: {#tbl-cv_receita layout-align="center" tbl-pos="H"}
+```{=latex}
+
+\begin{tabular}{|l|l|}
+\toprule
+\textbf{Variável} & \textbf{Coeficiente de Variação} \\ \midrule
+Renda total média & 11,74\%                 \\
+\bottomrule
+\end{tabular}
+
+```
+
+Coeficiente de variação da receita total média das lojas
+:::
+
 ::: {#quad-receita layout-align="center" quad-pos="H"}
 ```{=latex}
-	\begin{tabular}{ | l | S[table-format = 5.4] |}
+	\begin{tabular}{ | l | S[table-format = 10.2] |}
 	\toprule
 		\textbf{Estatística} & \textbf{Valor}
 \\
@@ -211,12 +243,15 @@ Receita total média das lojas registrada nos anos de 1880 até 1889
 Medidas resumo da receita tota média das lojas por ano
 :::
 
-  A partir da $\ref{fig-receita_tot}$, da [@tbl-receita_media] e do [**Quadro** @quad-receita], é possível identificar um crescimento contínuo da receita total média até 1887, um decrescimento em 1888 e o maior crescimento do período de 1888 a 1889 (de ~2200 reais). No geral, houve um aumento de receita durante o período analisado.
-  Uma diferença entre a as medidas resumo próximas, o que demonstra, no geral, um crescimento regular da receita total média. A excessão é a diferença entre o máximo e o terciro quartil, por conta do alto crescimento de 1888 a 1889.
+  A partir da $\ref{fig-receita_tot}$, da [@tbl-receita_media] e do [**Quadro** @quad-receita], é possível identificar um crescimento contínuo da receita total média até 1887, um decrescimento em 1888 e o maior crescimento do período de 1888 a 1889 (de ~2200 reais). No geral, houve um aumento de receita durante o período analisado. 
+  
+  Com a [@tbl-cv_receita] é possível validar a regularidade do crescimento por meio do baixo coeficiente de variação (11,74%).
+  
+  Uma diferença entre as medidas resumo próximas demonstra, no geral, um crescimento regular da receita total média. A exceção é a diferença entre o máximo e o terceiro quartil, por conta do alto crescimento de 1888 a 1889.
 
 ## Análise do comportamento do peso em relação à altura
 
-  A seguinte análise tem por objetivo entender a relação entre as variáveis quantitaivas discretas peso (em quilogramas) e altura (em centímetros) dos clientes das 18 lojas da região observada pela holding Old Town Road.Ltda, a fim de entender como a variação de uma influencia na outra. Para a visualizção da análise serão utilizados um gráfico de dispersão e quadros de medidas resumo para ambas as variáveis.
+  A seguinte análise tem por objetivo entender a relação entre as variáveis quantitativas discretas peso (em quilogramas) e altura (em centímetros) dos clientes das 18 lojas da região observada pela holding Old Town Road.Ltda, a fim de entender como a variação de uma influência na outra. Para a visualização da análise serão utilizados um gráfico de dispersão e quadros de medidas resumo para ambas as variáveis.
 
 ```{r}
 #| label: fig-clientes
@@ -230,7 +265,7 @@ Gráfico_2
 
 ::: {#quad-clientes_p layout-align="center" quad-pos="H"}
 ```{=latex}
-	\begin{tabular}{ | l | S[table-format = 2.4] |}
+	\begin{tabular}{ | l | S[table-format = 3.2] |}
 	\hline
 		\textbf{Estatística} & \textbf{Valor}
 \\
@@ -254,7 +289,7 @@ Medidas resumo do peso dos clientes
 ::: {#quad-clientes_a layout-align="center" quad-pos="H"}
 ```{=latex}
 
-	\begin{tabular}{ | l | S[table-format = 2.4] |}
+	\begin{tabular}{ | l | S[table-format = 3.2] |}
 	\hline
 		\textbf{Estatística} & \textbf{Valor}
 \\
@@ -275,13 +310,31 @@ Medidas resumo do peso dos clientes
 Medidas resumo da altura dos clientes
 :::
 
-  Conforme observado na $\ref{fig-clientes}$ e no [**Quadro** @quad-clientes_a], [**Quadro** @quad-clientes_p] o peso tende a crescer conforme a altura cresce, com uma concentração maior de cliente próximos da média de peso (74,6) e de altura (171,480), além de um desvio padrão próximo de 10 em ambas as variáveis. 
-  As medidas de centralidade são próximas e as diferenças entre a mediana e os intervalos inter quartis são próximas, o que evidencias uma boa distribuição dos dados, porém a diferença do máximo para o terceiro quartil é maior que a da primeiro quartil para o mínimo, o que indica uma menor concentração de clientes em idades mais avançadas que em idades menores.  
+
+::: {#tbl-peso_altura layout-align="center" tbl-pos="H"}
+```{=latex}
+\begin{tabular}{|l|l|}
+\toprule
+\textbf{Variável} & \textbf{Coeficiente de Variação} \\ \midrule
+Peso     & 15,84\%                 \\
+Altura   & 5,75\%                  \\ 
+\bottomrule
+\end{tabular}
+```
+
+Coeficientes de variação da altura e do peso dos clientes
+:::
+
+  Conforme observado na $\ref{fig-clientes}$ e no [**Quadro** @quad-clientes_a], [**Quadro** @quad-clientes_p] o peso tende a crescer conforme a altura cresce, com uma concentração maior de cliente próximos da média de peso (74,6) e de altura (171,480), além de um desvio padrão próximo de 10 em ambas as variáveis.
+  
+  A partir da [@tbl-peso_altura] é possível legitimar a baixa variabilidade das variáveis, utilizando os baixos coeficientes de variação encontrados: 15,84% do peso e 5,75% da  altura.
+  
+  As medidas de centralidade são próximas e as diferenças entre a mediana e os intervalos inter quartis são próximas, o que evidencia uma boa distribuição dos dados, porém a diferença do máximo para o terceiro quartil é maior que a da primeiro quartil para o mínimo, o que indica uma menor concentração de clientes em idades mais avançadas que em idades menores.  
 
 
 ## Análise do perfil das idades por loja
 
-  O estudo sobre o comportamento das idades consiste em duas variáveis: a idade dos cliente (variável quantitativa discreta) e as lojas da cidade Âmbar Seco (variável qualitativa nominal): "Banco Careca", "Ferraria Seca", "Saloon" e "Vendinha Rápida". Para esta análise foram feitos gráficos de box-plot e histograma e um quadro de medidas resumo da variável idade para uma melhor visualização da situação.
+  O estudo sobre o comportamento das idades consiste em duas variáveis: a idade dos 415 clientes (variável quantitativa discreta) e as lojas da cidade Âmbar Seco (variável qualitativa nominal): "Banco Careca", "Ferraria Seca", "Saloon" e "Vendinha Rápida". Para esta análise foram feitos gráficos de box-plot e um quadro de medidas resumo da variável idade para uma melhor visualização da situação.
   
 ```{r}
 #| label: fig-box_plot
@@ -312,14 +365,17 @@ box_plot_lojas
 Medidas resumo da idade dos clientes de Âmbar Seco
 :::
 
-  Realizando a análise da $\ref{fig-box_plot}$ e do [**Quadro** @quad-idades] é possível notar que as médias de idade das lojas são bastante parecidas, porém, quando analisamos  o comportamento da frequência das idades em cada loja, percebe-se que ele não é tão parecido assim.
-  É possível notar a presença de outliers com idades mais avançadas nas lojas Ferraria Seca e Saloon, o que, junto com o desvio-padrão mais elevado e variância bem mais elevada, demonstra uma maior variabilidade e dispersão de idades nessas lojas mas a concentração de clientes no intervalo de 20 a 40 anos de idade faz com que suas médias se aproximem dos 35 anos.
-  A loja Vendinha Rápida, apesar de não ter outliers e ter um intervalo de idade menor que as outras duas citadas anteriormente, apresenta a maior média de idades.
-  As idades possuem medidas de centralidade e intervalos inter quartis parecidos, o que as aproximas. A diferença maior está nos mínimos e máximo, sendo estes mais distantes nas lojas onde os dados estão mais dispersos.
+  Realizando a análise da $\ref{fig-box_plot}$ e do [**Quadro** @quad-idades] é possível notar que as médias de idade das lojas são bastante parecidas, porém, quando analisamos  o comportamento da frequência das idades em cada loja, percebe-se que ele não é tão parecido assim. 
+  
+  É possível notar a presença de outliers com idades mais avançadas nas lojas Ferraria Seca e Saloon, o que, junto com o desvio-padrão mais elevado e variância bem mais elevada, demonstra uma maior variabilidade e dispersão de idades nessas lojas mas a concentração de clientes no intervalo de 20 a 40 anos de idade faz com que suas médias se aproximem dos 35 anos. 
+  
+  A loja Vendinha Rápida, apesar de não ter outliers e ter um intervalo de idade menor que as outras duas citadas anteriormente, apresenta a maior média de idades. 
+  
+  As idades possuem medidas de centralidade e intervalos interquartis parecidos, o que as aproximam. A diferença maior está nos mínimos e máximos, sendo estes mais distantes nas lojas onde os dados estão mais dispersos.
 
 ## Os 3 produtos mais vendidos nas 3 lojas com maior receita em 1889
 
-  A análise tem como objetivo de entender masi sobre os três produtos mais vendidos nas três lojas com maior receita emreais ("Loja Ouro Fino", "Loja TendTudo" e "Ferraria Apache") no ano de 1889. Para isso serão analisadas as variáveis qualitativas nominais Loja e Produto, a variável quantitaivas discreta Quantidade e a variável quantitativa contínua Receita Total. Como parte  visual, serão utilizados gráficos de coluna.
+  A análise tem como objetivo de entender mais sobre os três produtos mais vendidos nas três lojas com maior receita em reais ("Loja Ouro Fino", "Loja TendTudo" e "Ferraria Apache") no ano de 1889. Para isso serão analisadas as variáveis qualitativas nominais Loja e Produto, a variável quantitativa discreta Quantidade e a variável quantitativa contínua Receita Total. Como parte  visual, serão utilizados gráficos de coluna.
   
 ```{r}
 #| label: fig-lojas
@@ -330,32 +386,17 @@ Gráfico_4
 ```
 
 ```{r}
-#| label: fig-ouro_fino
-#| fig-cap: "Gráfico de colunas do top 3 produtos da loja Ouro fino"
+#| label: fig-top_produtos
+#| fig-cap: "Gráfico de colunas do top 3 produtos das 3 lojas com maior receita"
 #| fig-pos: "H"
 
-grafico_of
+grafico_produtos
 ```
 
-```{r}
-#| label: fig-tendtudo
-#| fig-cap: "Gráfico de colunas do top 3 produtos da loja TendTudo"
-#| fig-pos: "H"
-
-grafico_tt
-```
-
-```{r}
-#| label: fig-ferraria_apache
-#| fig-cap: "Gráfico de colunas do top 3 produtos da loja Ferraria Apache"
-#| fig-pos: "H"
-
-grafico_fa
-```
 
 ::: {#tbl-produtos layout-align="center" tbl-pos="H"}
 ```{=latex}
-\begin{tabular}{@{}l|rr@{}}
+\begin{tabular}{|l|l|}
 \toprule
 \textbf{Loja} & \textbf{Receita total} \\ \midrule
 Loja Ouro Fino & 197312,5 \\
@@ -367,10 +408,16 @@ Ferraria Apache & 181689,1\\ \bottomrule
 Top 3 lojas com maior receita
 :::
 
-  A partir da $\ref{fig-box_plot}$ é possível verificar que as duas lojas com maior receita total (Loja Ouro Fino e Loja TendTudo) apresentam  valores bem próximos (~197312 reais e ~196340 reais) enquanto a treceira loja, Ferraria Apache, possui uma diferença maoir em relação ao segundo lugar, de ~14651 reais.
-  Em relação aos produtos é interessante verificar o Whisky consta como um dos produtos mais vendidos nas três lojas, mostrando ser um produto de alta demanda. Os produtos Espingarda e Chapéu de Couro estão no top 3 de duas lojas, tendo uma demanda notável também.
+  A partir da $\ref{fig-lojas}$ e da [@tbl-produtos] é possível verificar que as duas lojas com maior receita total (Loja Ouro Fino e Loja TendTudo) apresentam  valores bem próximos, enquanto a terceira loja, Ferraria Apache, possui uma diferença maior em relação ao segundo lugar. 
+  
+  Em relação aos produtos, a partir da $\ref{fig-top_produtos}$ é interessante verificar o Whisky consta como um dos produtos mais vendidos nas três lojas, mostrando ser um produto de alta demanda. Os produtos Espingarda e Chapéu de Couro estão no top 3 de duas lojas, tendo uma demanda notável também.
 
 # Conclusões
 
-  A primeira análise mostra um crescimento regular da receita total média entre os anos de 1880 e 1889.
+  A partir da primeira análise conseguimos notar um crescimento regular e, no geral, contínuo da receita total média entre os anos de 1880 e 1889. 
+  
   Quando analisamos o peso em relação a altura percebemos uma forte relação entre as variáveis, em que quando uma cresce a outra cresce também. 
+  
+  Ao colocar o perfil das idades como centro de análise percebemos uma maior dispersão de idades nas lojas Ferraria Seca e Saloon, e dados mais concentrados nas lojas Banco Careca e Vendinha Rápida, sendo a última a com valores concentrados em idades um pouco mais avançadas que as demais lojas. 
+  
+  Analisando o top três produtos nas três lojas com maior receita em 1889 conseguimos notar valores próximos de receita nas duas lojas que mais vendem, com o terceiro lugar um pouco mais abaixo. Sobre os produtos é notável que o Whisky é produto de alta demanda, assim como a espingarda e o chápeu de couro.
