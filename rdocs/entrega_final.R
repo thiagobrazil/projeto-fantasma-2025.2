@@ -71,9 +71,7 @@ infos_clientes<- infos_clientes|>
   mutate(Weight_kg = 0.45 * Weight_lbs)|>
   mutate(Height_cm = 10 * Height_dm)
 
-cv_peso<- 100* (sd(infos_clientes$Weight_kg)/mean(infos_clientes$Weight_kg))
-
-cv_altura<- 100* (sd(infos_clientes$Height_cm)/mean(infos_clientes$Height_cm))
+pearson<- cor(infos_clientes$Weight_kg, infos_clientes$Height_cm)
 
 Gráfico_2<- ggplot(infos_clientes) +
   aes(x = Height_cm, y = Weight_kg) +
@@ -409,18 +407,6 @@ top_produtos<- top_vendas|>
 top_produtos<- top_produtos|>
   add_row(NameStore = "Ferraria Apache", NameProduct = "Whisky", Quantity = 41)
 
-Gráfico_4<- ggplot(top_lojas) +
-  aes(x = fct_reorder(NameStore, TotalIncome, .desc=T), y = TotalIncome, label = TotalIncome) +
-  geom_bar(stat = "identity", fill = "#A11D21", width = 0.7) +
-  geom_text(
-    position = position_dodge(width = .9),
-    vjust = -0.5, #hjust = .5,
-    size = 3
-  ) +
-  labs(x = "Loja", y = "Receita Total (R$)") +
-  theme_estat()
-ggsave("colunas-uni-freq.pdf", width = 158, height = 93, units = "mm"
-)
 
 grafico_produtos<- ggplot(top_produtos) +
   aes(
